@@ -20,9 +20,8 @@ def event(pin):
         pwm_m.ChangeDutyCycle(0)
         for i in range(10, 60): # 모터 가속 
             pwm_p.ChangeDutyCycle(i)
-        time.sleep(0.1)
-        #print("a = 0")
-  
+        time.sleep(0.1) #0.1초 지연 
+        
     elif a == 1:
         a += 1
         for i in range(60, 10, -1): #서서히 감속 
@@ -32,15 +31,13 @@ def event(pin):
         for i in range(10, 60): # 반대 방향으로 가속 
             pwm_m.ChangeDutyCycle(i)
         time.sleep(0.1)
-        #print("a = 1")
 
     elif a == 2:
         pwm_p.ChangeDutyCycle(0)
         pwm_p.ChangeDutyCycle(0)
         a = 0
-        #print("a = 2")  
 
-GPIO.add_event_detect(KEY,GPIO.FALLING,callback=event, bouncetime=300)
+GPIO.add_event_detect(KEY,GPIO.FALLING,callback=event, bouncetime=300) 
 
 try:
     pwm_p = GPIO.PWM(MOTOR_P, 100)
